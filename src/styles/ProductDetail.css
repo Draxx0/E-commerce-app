@@ -1,0 +1,33 @@
+.product-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.product-detail__img {
+  width: 100%;
+}
+
+.product-detail__img img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.product-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-detail__title::first-letter,
+.product-detail__description::first-letter {
+  text-transform: capitalize;
+}
+
+.product-detail button {
+  width: fit-content;
+}
+
+.product-detail__related {
+  margin-top: 50px;
+}

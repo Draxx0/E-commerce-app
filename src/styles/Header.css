@@ -1,4 +1,4 @@
-header {
+nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,4 +16,35 @@ header {
   align-items: center;
   gap: 50px;
   padding-right: 50px;
+}
+
+.nav-list__item a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.svg-wrapper {
+  position: relative;
+}
+
+.cart-item {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: var(--secondary);
+}
+
+.nav-list__item a svg {
+  width: 30px;
+  height: 30px;
 }
