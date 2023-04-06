@@ -1,0 +1,24 @@
+.admin-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-logo {
+  width: 250px;
+  height: 150px;
+}
+
+.admin-link-list {
+  height: calc(100vh - 150px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}

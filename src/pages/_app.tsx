@@ -7,6 +7,7 @@ import "../styles/CategoryCard.css";
 import "../styles/ProductDetail.css";
 import "../styles/CategoryDetail.css";
 import "../styles/CartPage.css";
+import "../styles/AdminHeader.css";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {

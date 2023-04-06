@@ -1,3 +1,4 @@
+import AdminHeader from "@/components/AdminHeader";
 import { FC, ReactNode } from "react";
 
 type IProps = {
@@ -7,9 +8,9 @@ type IProps = {
 const AdminLayout: FC<IProps> = ({ children }) => {
   return (
     <>
-      {/* <Header /> */}
+      <AdminHeader />
 
-      <main>{children}</main>
+      <main className="admin-main">{children}</main>
     </>
   );
 };
