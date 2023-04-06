@@ -1,15 +1,17 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { IOrders } from "@/types/orders.type";
 import { FC, ReactNode } from "react";
 
 type IProps = {
   children: ReactNode;
+  order: IOrders | null;
 };
 
-const Layout: FC<IProps> = ({ children }) => {
+const Layout: FC<IProps> = ({ children, order }) => {
   return (
     <>
-      <Header />
+      <Header order={order} />
 
       <main>{children}</main>
 

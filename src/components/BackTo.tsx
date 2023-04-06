@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 
-const BackTo = ({ returnPath }: { returnPath: string }) => {
+const BackTo = () => {
   const router = useRouter();
   return (
     <div className="backto" onClick={() => router.back()}>
-      <span>Retour à {returnPath}</span>
+      <span>Retour</span>
     </div>
   );
 };

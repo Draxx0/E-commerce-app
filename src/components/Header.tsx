@@ -3,10 +3,10 @@ import Logo from "../assets/logo/logo.webp";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { IOrders } from "@/types/orders.type";
 
-const Header = () => {
+const Header = ({ order }: { order: IOrders | null }) => {
   const router = useRouter();
-
   return (
     <nav>
       <Image
@@ -30,7 +30,7 @@ const Header = () => {
           <Link href="/cart">
             Mon Panier{" "}
             <div className="svg-wrapper">
-              <div className="cart-item">2</div>
+              <div className="cart-item-number">{order?.orderItems.length}</div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

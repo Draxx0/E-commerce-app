@@ -1,0 +1,11 @@
+.category-detail__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.category-detail__description {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 100px;
+}

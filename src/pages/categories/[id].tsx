@@ -1,11 +1,35 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { ICategory } from "@/types/category.type";
+import ProductCard from "@/components/ProductCard";
+import BackTo from "@/components/BackTo";
+import Layout from "@/layout/Layout";
+import { IOrders } from "@/types/orders.type";
 
-const CategoryDetail = ({ category }: { category: ICategory }) => {
+const CategoryDetail = ({
+  category,
+  order,
+}: {
+  category: ICategory;
+  order: IOrders;
+}) => {
   return (
-    <div className="category-detail">
-      <h1>{category.title}</h1>
-    </div>
+    <Layout order={order}>
+      <div className="category-detail">
+        <BackTo />
+        <h1 className="category-detail__title">Catégorie : {category.title}</h1>
+        <p className="category-detail__description">{category.description}</p>
+
+        <h2>
+          Tous les produits de la catégorie {category.title} -{" "}
+          <small>{category.products.length} produits</small>
+        </h2>
+        <div className="grid">
+          {category.products.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
+        </div>
+      </div>
+    </Layout>
   );
 };
 
@@ -32,5 +56,9 @@ export const getStaticProps = async ({
   );
   const category = await res.json();
 
-  return { props: { category } };
+  const resOrders = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
+  const orders = await resOrders.json();
+  const order = orders[0];
+
+  return { props: { category, order } };
 };

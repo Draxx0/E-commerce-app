@@ -97,6 +97,23 @@ a:hover::before {
   border: 2px solid var(--secondary);
 }
 
+.action-button-border {
+  border: 2px solid var(--secondary);
+  color: var(--secondary);
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.action-button-border:hover {
+  background-color: var(--secondary);
+  color: white;
+}
+
 .logo {
   width: 15%;
   height: 15%;
