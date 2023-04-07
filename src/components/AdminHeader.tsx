@@ -20,6 +20,9 @@ const AdminHeader = () => {
 
       <ul className="admin-link-list">
         <li>
+          <Link href="/admin/dashboard">Dashboard</Link>
+        </li>
+        <li>
           <Link href="/admin/products">Produits</Link>
         </li>
         <li>
