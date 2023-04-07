@@ -1,4 +1,4 @@
 export enum Status {
-  INCART = "INCART",
+  INCART = "INCARD",
   COMPLETED = "COMPLETED",
 }

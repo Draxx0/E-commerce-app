@@ -7,10 +7,16 @@ import ProductCard from "@/components/ProductCard";
 import BackTo from "@/components/BackTo";
 import Layout from "@/layout/Layout";
 import { IOrders } from "@/types/orders.type";
+import { ProtectedRoute } from "@/functions/protectedRoute";
+import { useRouter } from "next/router";
+import { ProtectedAction } from "@/functions/protectedAction";
+import TokenService from "@/services/Token.service";
 
 const ProductDetail = ({ product }: { product: IProduct }) => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [order, setOrder] = useState<IOrders | null>(null);
+  const router = useRouter();
+
   const getProducts = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`);
     const products = await res.json();
@@ -29,6 +35,7 @@ const ProductDetail = ({ product }: { product: IProduct }) => {
 
   const handleAddToCart = async () => {
     try {
+      ProtectedAction(router);
       if (order) {
         const orderItemResponse = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/order-items`,
@@ -36,6 +43,7 @@ const ProductDetail = ({ product }: { product: IProduct }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${TokenService.getTokenFromLocalStorage()}`,
             },
             body: JSON.stringify({
               product: product.id,
@@ -53,6 +61,7 @@ const ProductDetail = ({ product }: { product: IProduct }) => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Authorization: `Bearer ${TokenService.getTokenFromLocalStorage()}`,
             },
             body: JSON.stringify({
               user: "5835545b-1280-4969-b9eb-50323c5b1924",

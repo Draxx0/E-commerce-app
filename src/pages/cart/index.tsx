@@ -64,7 +64,7 @@ const CartPage = () => {
       <div className="cart">
         <h1 className="page-title">Panier</h1>
 
-        <div className="row">
+        <div className="column">
           {order?.orderItems.map((order) => (
             <div className="cart-item" key={order.id}>
               <div className="cart-item__image">

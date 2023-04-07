@@ -58,7 +58,8 @@ export const getStaticProps = async ({
 
   const resOrders = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
   const orders = await resOrders.json();
-  const order = orders[0];
+  const orderData = orders[0];
+  const order = orderData ? orderData : null;
 
   return { props: { category, order } };
 };

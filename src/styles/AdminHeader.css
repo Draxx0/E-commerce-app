@@ -13,6 +13,12 @@
 .admin-logo {
   width: 250px;
   height: 150px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out all;
+}
+
+.admin-logo:hover {
+  transform: scale(1.05) translateY(-5px);
 }
 
 .admin-link-list {

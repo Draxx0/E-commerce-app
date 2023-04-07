@@ -13,7 +13,6 @@ const CategoriesPage = ({
   categories: ICategory[];
   order: IOrders;
 }) => {
-  const router = useRouter();
   return (
     <Layout order={order}>
       <BackTo />
@@ -41,7 +40,8 @@ export const getStaticProps: GetStaticProps<{
 
   const resOrders = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
   const orders = await resOrders.json();
-  const order = orders[0];
+  const orderData = orders[0];
+  const order = orderData ? orderData : null;
 
   return {
     props: {

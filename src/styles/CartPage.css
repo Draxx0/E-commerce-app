@@ -3,7 +3,7 @@
   margin: auto;
 }
 
-.cart .row .cart-item {
+.cart .column .cart-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,7 +13,8 @@
     44px 0px 80px rgba(0, 0, 0, 0.07);
   padding: 20px;
   border-radius: 8px;
-  margin: 50px auto;
+  margin: 50px 0;
+  width: 100%;
 }
 
 .cart-item .cart-item__content {
@@ -21,6 +22,7 @@
   flex-direction: column;
   gap: 10px;
   padding-right: 100px;
+  min-width: 40%;
 }
 
 .cart-item__quantity {

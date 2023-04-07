@@ -13,7 +13,7 @@ const Layout: FC<IProps> = ({ children, order }) => {
     <>
       <Header order={order} />
 
-      <main>{children}</main>
+      <main className="main">{children}</main>
 
       <Footer />
     </>

@@ -2,11 +2,14 @@ import Image from "next/image";
 import Logo from "../assets/logo/logo.webp";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IOrders } from "@/types/orders.type";
+import { UserContext } from "@/contexts/UserContext";
 
 const Header = ({ order }: { order: IOrders | null }) => {
   const router = useRouter();
+  const { user, Signout } = useContext(UserContext);
+
   return (
     <nav>
       <Image
@@ -26,8 +29,35 @@ const Header = ({ order }: { order: IOrders | null }) => {
         <li className="nav-list__item">
           <Link href="/categories">Les catégories</Link>
         </li>
+        {!user ? (
+          <>
+            <li className="nav-list__item">
+              <button
+                className="action-button"
+                onClick={() => router.push(`/auth/signin`)}
+              >
+                Connexion
+              </button>
+            </li>
+            <li className="nav-list__item">
+              <button
+                className="action-button"
+                onClick={() => router.push(`/auth/signup`)}
+              >
+                Inscription
+              </button>
+            </li>
+          </>
+        ) : (
+          <li className="nav-list__item">
+            <button className="action-button" onClick={() => Signout()}>
+              Déconnexion
+            </button>
+          </li>
+        )}
+        {user && <li className="nav-list__item">Bonjour {user.username}</li>}
         <li className="nav-list__item">
-          <Link href="/cart">
+          <Link href={user ? "/cart" : "/auth/signin"}>
             Mon Panier{" "}
             <div className="svg-wrapper">
               <div className="cart-item-number">{order?.orderItems.length}</div>
