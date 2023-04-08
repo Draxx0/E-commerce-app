@@ -2,19 +2,20 @@ import { IProduct } from "@/types/product.type";
 import { GetStaticPaths } from "next";
 import Image from "next/image";
 import { randomizeFunction } from "@/functions/randomizeFunction";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "@/components/ProductCard";
 import BackTo from "@/components/BackTo";
 import Layout from "@/layout/Layout";
 import { IOrders } from "@/types/orders.type";
-import { ProtectedRoute } from "@/functions/protectedRoute";
 import { useRouter } from "next/router";
 import { ProtectedAction } from "@/functions/protectedAction";
 import TokenService from "@/services/Token.service";
+import { UserContext } from "@/contexts/UserContext";
 
 const ProductDetail = ({ product }: { product: IProduct }) => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [order, setOrder] = useState<IOrders | null>(null);
+  const { user } = useContext(UserContext);
   const router = useRouter();
 
   const getProducts = async () => {
@@ -64,7 +65,7 @@ const ProductDetail = ({ product }: { product: IProduct }) => {
               Authorization: `Bearer ${TokenService.getTokenFromLocalStorage()}`,
             },
             body: JSON.stringify({
-              user: "5835545b-1280-4969-b9eb-50323c5b1924",
+              user: user?.id,
               orderItems: [
                 {
                   product: product.id,

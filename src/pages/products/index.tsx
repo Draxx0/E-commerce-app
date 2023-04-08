@@ -1,28 +1,15 @@
 import BackTo from "@/components/BackTo";
 import ProductCard from "@/components/ProductCard";
+import useGetOrders from "@/hook/useGetOrders";
 import Layout from "@/layout/Layout";
-import { ICategory } from "@/types/category.type";
-import { IOrders } from "@/types/orders.type";
 import { IProduct } from "@/types/product.type";
 import { GetStaticProps } from "next";
-import { useEffect, useState } from "react";
 
 const ProductsPage = ({ products }: { products: IProduct[] }) => {
-  const [order, setOrder] = useState<IOrders | null>(null);
-
-  const getOrder = async () => {
-    const resOrders = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
-    const orders = await resOrders.json();
-    const order = orders[0];
-    setOrder(order);
-  };
-
-  useEffect(() => {
-    getOrder();
-  }, []);
+  const { orders } = useGetOrders();
 
   return (
-    <Layout order={order}>
+    <Layout order={orders[0]}>
       <BackTo />
       <h1 className="page-title">Voici tous les produits</h1>
       <div className="grid">

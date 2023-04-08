@@ -55,7 +55,14 @@ const Header = ({ order }: { order: IOrders | null }) => {
             </button>
           </li>
         )}
-        {user && <li className="nav-list__item">Bonjour {user.username}</li>}
+        {user && (
+          <li
+            className="nav-list__item"
+            onClick={() => router.push("/profile")}
+          >
+            Bonjour {user.username}
+          </li>
+        )}
         <li className="nav-list__item">
           <Link href={user ? "/cart" : "/auth/signin"}>
             Mon Panier{" "}

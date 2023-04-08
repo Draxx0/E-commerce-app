@@ -1,4 +1,5 @@
 import { UserContext } from "@/contexts/UserContext";
+import useGetOrders from "@/hook/useGetOrders";
 import Layout from "@/layout/Layout";
 import TokenService from "@/services/Token.service";
 import { IOrders } from "@/types/orders.type";
@@ -11,24 +12,13 @@ interface IUserData {
 }
 
 const Signin = () => {
-  const [order, setOrder] = useState<IOrders | null>(null);
+  const { orders } = useGetOrders();
   const [userData, setUserData] = useState<IUserData>({
     username: "",
     password: "",
   });
   const { user, setUser } = useContext(UserContext);
   const router = useRouter();
-
-  const getOrder = async () => {
-    const resOrders = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders`);
-    const orders = await resOrders.json();
-    const order = orders[0];
-    setOrder(order);
-  };
-
-  useEffect(() => {
-    getOrder();
-  }, []);
 
   const handleSetUserData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -60,7 +50,7 @@ const Signin = () => {
     }
   };
   return (
-    <Layout order={order}>
+    <Layout order={orders[0]}>
       <div className="signin">
         <h1>Connexion</h1>
 
